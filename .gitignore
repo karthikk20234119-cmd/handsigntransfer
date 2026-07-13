@@ -1,0 +1,14 @@
+# Git ignore rules
+node_modules/
+.venv/
+venv/
+dist/
+build/
+target/
+coverage/
+__pycache__/
+.env
+.env.local
+.idea/
+.vscode/
+*.log

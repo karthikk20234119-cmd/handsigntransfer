@@ -1,0 +1,39 @@
+<!-- receiver.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gesture Receiver</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 30px;
+      }
+      #gesture {
+        font-size: 48px;
+        color: #333;
+        margin-top: 20px;
+      }
+    </style>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+  </head>
+  <body>
+    <h1>Hand Sign Receiver</h1>
+    <div id="last">Waiting for gestures...</div>
+    <div id="gesture">—</div>
+
+    <script>
+      const socket = io();
+      socket.on("connect", () => console.log("Connected to server"));
+      socket.on("new_gesture", (data) => {
+        console.log("Gesture received", data);
+        document.getElementById("last").innerText =
+          "Last received at " + new Date().toLocaleTimeString();
+        document.getElementById("gesture").innerText =
+          data.gesture || JSON.stringify(data);
+        // optionally play TTS or show animation here
+      });
+    </script>
+  </body>
+</html>

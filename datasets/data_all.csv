@@ -1,0 +1,6 @@
+# optional: merge_datasets.py
+import pandas as pd, glob
+files = glob.glob("dataset/*.csv")
+dfs = [pd.read_csv(f) for f in files]
+df = pd.concat(dfs, ignore_index=True)
+df.to_csv("dataset/data_all.csv", index=False)
